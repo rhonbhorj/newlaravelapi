@@ -102,7 +102,7 @@ class StudentController extends Controller
 
     public function index()
     {
-//test
+//tests 
 
         $student = Student::all();
 
