@@ -96,6 +96,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Student;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailNotify;
 
 class StudentController extends Controller
 {
@@ -124,6 +126,71 @@ class StudentController extends Controller
 
         return response()->json($data, $http);
     }
+
+
+    public function otp(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'subject' => 'required|string|max:191',
+            // 'body' => 'required|string|max:191',
+            'email' => 'required|email|max:191',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'error' => $validator->messages()
+            ], 422);
+        } else {
+
+            $data = [
+                'subject' =>
+                $request->subject,
+                // 'body' =>  $request->body
+                'body' => 'Your OTP: ' . $this->generateOTP()
+            ];
+
+
+
+
+
+
+            try {
+                Mail::to($request->email)->send(new MailNotify($data));
+                return response()->json(['success' => $data['body']]);
+            } catch (\Exception $e) {
+                return response()->json(['error' => $e->getMessage()]);
+            }
+
+
+            // return response()->json([
+            //     'status' => 200,
+            //     'message' => $request->subject
+            // ], 200);
+        }
+    }
+
+
+
+
+
+    function generateOTP($length = 6)
+    {
+        $characters = '0123456789';
+        $otp = '';
+
+        $max = strlen($characters) - 1;
+        for ($i = 0; $i < $length; $i++) {
+            $otp .= $characters[random_int(0, $max)];
+        }
+
+        return $otp;
+    }
+
+
+
+
+
+
 
     public function store(Request $request)
     {
