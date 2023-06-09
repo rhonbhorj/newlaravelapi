@@ -126,7 +126,7 @@ class StudentController extends Controller
 
         return response()->json($data, $http);
     }
-
+    ///bagoad
 
     public function otp(Request $request)
     {
