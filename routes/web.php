@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
 /*
@@ -20,3 +21,13 @@ Route::get('/', function () {
 
 
 Route::get('/send', [MailController::class, 'index']);
+
+
+
+
+Route::any('/', function (Request $request) {
+    return response()->json([
+        'status' => 401,
+        'message' => 'Please check your API endpoint.',
+    ], 401);
+})->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);

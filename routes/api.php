@@ -31,3 +31,12 @@ Route::delete('students/{id}/delete', [StudentController::class, 'destroy']);
 
 
 Route::post('otp', [StudentController::class, 'otp']);
+
+
+
+Route::any('/', function (Request $request) {
+    return response()->json([
+        'status' => 401,
+        'message' => 'Please check your API endpoint.',
+    ], 401);
+})->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
