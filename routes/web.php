@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +23,37 @@ Route::get('/', function () {
 
 
 Route::get('/send', [MailController::class, 'index']);
+
+
+// Route:: get('/setup',function(){
+
+
+// $creadentails=[
+
+// 'email'=>'admin@damin.com',
+// 'password'=>'password'
+
+// ];
+
+// if(!Auth::attempt($creadentails)){
+
+// $user =new \App\Models\User();
+// $user->name ='Admin';
+// $user->email = $creadentails['email'];
+// $user->password= Hash::make($creadentails['password']);
+// $user->save();
+
+
+
+
+
+//         if (Auth::attempt($creadentails)) {
+//             $user = Auth::user();
+//             $accessToken = $user->createToken('admin', ['create', 'update', 'delete']);
+//             $adminToken = $accessToken->accessToken;
+//         }
+
+
+// }
+
+// });
