@@ -1,0 +1,19 @@
+[33mcommit 68738841e8a30585199dcd3068d340f1a7452175[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: rhon bhorj <rhonbhorj@gmail.com>
+Date:   Fri Jun 9 10:09:58 2023 +0800
+
+    hehe
+
+[1mdiff --git a/app/Http/Controllers/Api/StudentController.php b/app/Http/Controllers/Api/StudentController.php[m
+[1mindex 7b25b5e..76097a4 100755[m
+[1m--- a/app/Http/Controllers/Api/StudentController.php[m
+[1m+++ b/app/Http/Controllers/Api/StudentController.php[m
+[36m@@ -126,7 +126,7 @@[m [mpublic function index()[m
+ [m
+         return response()->json($data, $http);[m
+     }[m
+[31m-    ///bagoad[m
+[32m+[m[32m    ///bagoad hehehe[m
+ [m
+     public function otp(Request $request)[m
+     {[m
